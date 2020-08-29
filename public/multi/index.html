@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock👊 Papel✋ Scissor✂️</title>
+    <link rel="shortcut icon" href="rock_papel_scissor.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js" defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Rock Papel Scissor</h1>
+    </div>
+
+    <div class="container">
+        <div class="score-container">
+            <span class="you">You</span>
+            <h2 class="score"> 0-0 </h2>
+            <span class="oponent">Computer</span>
+        </div>
+        <div class="you-side">
+            <div class="connect">Conectado</div>
+            <button class="rock">👊🏻</button>
+            <button class="papel">✋🏻</button>
+            <button class="scissor">✌🏻</button>
+            <div class="waiting">Listo </div>
+        </div>
+        <div class="oponent-side">
+            <div class="connect"> Conectado</div>
+            <button class="rock">👊🏻</button>
+            <button class="papel">✋🏻</button>
+            <button class="scissor">✌🏻</button>
+            <div class="waiting">Listo </div>
+        </div>
+        <div class="you-selection"></div>
+        <div class="oponent-selection"></div>
+        <div class="who-win"></div>
+
+    </div>
+    <div class="winner-container">
+        <div class="winner">YOU ARE THE WINNER</div>
+        <button class="restart-button">Restart</button>
+    </div>
+    <div class="waiting-oponent">Esperando tu oponente...</div>
+
+    <span class="autor">Made with ❤️ by Lam09 </span>
+
+
+
+</body>
+
+</html>

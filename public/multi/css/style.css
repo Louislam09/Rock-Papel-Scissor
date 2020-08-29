@@ -1,0 +1,310 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #02132e;
+	font-family: cursive;
+	user-select: none;
+	zoom: 90%;
+}
+
+.header {
+	position: relative;
+	background-color: #fff;
+	height: 100px;
+}
+
+.header h1 {
+	position: relative;
+	text-align: center;
+	top: 25px;
+	font-weight: bolder;
+	color: #02132e;
+}
+
+.container {
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	min-width: 200px;
+	transform: translate(-50%);
+	color: white;
+}
+
+.container span {
+	background: #ff0015ad;
+	color: white;
+	padding: 10px;
+	font-weight: bolder;
+	margin: 5px;
+	border: 1px solid white;
+	border-radius: 10px;
+}
+
+.container .score-container {
+	position: relative;
+	min-width: 200px;
+	display: flex;
+}
+
+/* 
+.container .you {
+	position: absolute;
+	top: 0;
+	left: -60px;
+}
+
+.container .oponent {
+	position: absolute;
+	top: 0;
+	left: 70px;
+} */
+
+.container .you-side {
+	position: absolute;
+	display: grid;
+	top: 120px;
+	left: -250px;
+	margin-left: 20px;
+}
+
+.container .oponent-side {
+	position: absolute;
+	display: grid;
+	top: 120px;
+	right: -350px;
+	/* margin-right: -40px; */
+}
+
+.container button {
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	color: white;
+	border-radius: 50%;
+	margin: 10px;
+	font-size: 60px;
+	outline: none;
+}
+
+.container .scissor {
+	transform: rotate(-90deg);
+}
+
+.container button:hover {
+	background-color: #ddd;
+}
+
+.you-selection {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	top: 250px;
+	left: -50px;
+	border-radius: 50%;
+	font-size: 60px;
+	text-align: center;
+	transform: rotate(-90deg);
+}
+
+.oponent-selection {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	top: 250px;
+	right: -50px;
+	border-radius: 50%;
+	font-size: 60px;
+	text-align: center;
+	transform: rotate(-90deg);
+}
+
+.who-win {
+	position: absolute;
+	top: 400px;
+	left: 10px;
+	border-radius: 50%;
+	color: white;
+	font-size: 2em;
+}
+
+.win {
+	border: 4px solid green;
+}
+
+.lose {
+	border: 4px solid red;
+}
+
+.draw {
+	border: 12px solid gray;
+}
+
+.waitingAnimation {
+	animation: blink 1s linear infinite;
+}
+
+.autor {
+	position: fixed;
+	bottom: 1%;
+	right: 1%;
+	background-color: rgba(255, 0, 21, 0.678);
+	color: white;
+	padding: 10px;
+	font-weight: bolder;
+}
+
+.winner-container {
+	position: fixed;
+	display: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 5em;
+	background-color: rgba(0, 0, 0, .7);
+	min-width: min-content;
+	min-height: min-content;
+	justify-content: center;
+	align-items: center;
+	padding: .25em .5em;
+	flex-direction: column;
+	color: white;
+	transition: .5s;
+}
+
+.winner-container button {
+	font-size: 3rem;
+	background-color: white;
+	border: 1px solid black;
+	padding: .25em .5em;
+	color: black;
+	cursor: pointer;
+	border-radius: 15px;
+	width: fit-content;
+	margin-top: 55px;
+	outline: none;
+}
+
+.winner-container button:hover {
+	background-color: black;
+	border-color: white;
+	color: white;
+}
+
+.winner {
+	color: white;
+	animation: anime 4s linear infinite;
+}
+
+.show {
+	display: flex;
+}
+
+.waiting-oponent{
+	position: absolute;
+	top: 22%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	padding: 10px;
+	background: white;
+	color: black;
+	font-size: 2em;
+	text-align: center;
+	font-weight: bolder;
+	color: #c51717ec;
+	border-radius: 10px;
+}
+
+.waiting{
+	position: relative;
+	color: #ffffff5e;
+	padding: 5px;
+	margin-top: 15px;
+	font-size: 3em;
+	text-decoration: line-through;
+}
+
+.connect{
+	position: relative;
+	color: #ffffff5e;
+	padding: 5px;
+	margin-top: 15px;
+	font-size: 3em;
+	text-decoration: line-through;
+}
+
+.is-ready{
+	color: green;
+	text-decoration: none;
+}
+
+.is-connect{
+	color: white;
+	text-decoration: none;
+}
+
+.popup-message{
+	position: absolute;
+	top: 90%; 
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #c51717ec;
+	padding: 10px;
+	border: 1px solid #c51717ec;
+	border-radius: 15px;
+	background: white;
+	font-size: 2em;
+	font-weight: bold;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+@keyframes anime {
+	25% {
+		border-left: 1px solid #ff0015ad;
+		box-shadow: inset 0 0 10px 0px#ff0015ad;
+	}
+	50% {
+		border-top: 1px solid #ff0015ad;
+		box-shadow: inset 0 0 20px 0px #ff0015ad;
+	}
+	75% {
+		border-right: 1px solid #ff0015ad;
+		box-shadow: inset 0 0 30px 0px #ff0015ad;
+	}
+	100% {
+		border-bottom: 1px solid white;
+		box-shadow: inset 0 0 40px 0px #ff0015ad;
+	}
+}
+
+@keyframes blink {
+	0% {
+		/* visibility: hidden; */
+		background-color: #02132e;
+	}
+
+	100% {
+		/* visibility: visible; */
+		background-color: white;
+	}
+}
+
+@media only screen and (min-width: 320px) and (max-width:  450px){
+	body{
+		zoom: 50%;
+	}    
+	
+}
+
+  @media only screen and (min-width: 450px) and (max-width: 1023px) {
+	body{
+			zoom: 80%;
+		}
+  
+}

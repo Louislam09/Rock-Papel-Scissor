@@ -1,0 +1,23 @@
+{
+  "name": "rock-papel-scissor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Louislam09/Rock-Papel-Scissor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Louislam09/Rock-Papel-Scissor/issues"
+  },
+  "homepage": "https://github.com/Louislam09/Rock-Papel-Scissor#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

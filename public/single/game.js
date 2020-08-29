@@ -8,8 +8,9 @@ const WINNER_CONTAINER = document.querySelector('.winner-container');
 const WINNER = document.querySelector('.winner');
 const RESTART_BUTTON = document.querySelector('.restart-button');
 
-let computerPoint = 4;
-let playerPoint = 4;
+let computerPoint = 0;
+let playerPoint = 0;
+let pointToWin = 3;
 
 function gameStart() {
 	let computerChoices = computer.children;
@@ -32,7 +33,7 @@ function gameStart() {
 
 				SCORE.innerText = `${playerPoint} - ${computerPoint}`;
 
-				whoWin5();
+				whoWin3();
 			}, 4000);
 		});
 	});
@@ -52,7 +53,7 @@ function checkForWin(playerChoice, comChoice) {
 	}
 }
 
-function whoWin5() {
+function whoWin3() {
 	GameOver();
 }
 
@@ -63,12 +64,14 @@ function win() {
 	COM_SELECTION_CONTAINER.classList.add('lose');
 	playerPoint += 1;
 }
+
 function draw() {
 	WHO_WIN.innerText = '';
 	WHO_WIN.innerText = `IT'S A DRAW`;
 	YOU_SELECTION_CONTAINER.classList.add('draw');
 	COM_SELECTION_CONTAINER.classList.add('draw');
 }
+
 function lose() {
 	WHO_WIN.innerText = '';
 	WHO_WIN.innerText = `YOU LOSE!`;
@@ -104,12 +107,13 @@ function waitingAnimation() {
 		COM_SELECTION_CONTAINER.innerText = '🖐🏻';
 	}, 3000);
 }
+
 function GameOver() {
-	if (playerPoint === 5 || computerPoint === 5) {
+	if (playerPoint === pointToWin || computerPoint === pointToWin) {
 		WINNER_CONTAINER.classList.add('show');
 
-		if (playerPoint === 5) WINNER.innerText = `YOU WON!!`;
-		if (computerPoint === 5) WINNER.innerText = `THE COMPUTER WON!!`;
+		if (playerPoint === pointToWin) WINNER.innerText = `YOU WON!!`;
+		if (computerPoint === pointToWin) WINNER.innerText = `THE COMPUTER WON!!`;
 
 		RESTART_BUTTON.addEventListener('click', () => {
 			SCORE.innerText = '0 - 0';
