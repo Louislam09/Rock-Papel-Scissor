@@ -49,19 +49,6 @@ body {
 	display: flex;
 }
 
-/* 
-.container .you {
-	position: absolute;
-	top: 0;
-	left: -60px;
-}
-
-.container .oponent {
-	position: absolute;
-	top: 0;
-	left: 70px;
-} */
-
 .container .you-side {
 	position: absolute;
 	display: grid;
@@ -236,6 +223,7 @@ body {
 	margin-top: 15px;
 	font-size: 3em;
 	text-decoration: line-through;
+	right: 40px;
 }
 
 .is-ready{
@@ -302,7 +290,7 @@ body {
 	
 }
 
-  @media only screen and (min-width: 450px) and (max-width: 1023px) {
+@media only screen and (min-width: 450px) and (max-width: 1023px) {
 	body{
 			zoom: 80%;
 		}
