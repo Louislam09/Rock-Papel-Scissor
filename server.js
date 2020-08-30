@@ -54,7 +54,6 @@ const startServer = socket => {
         socket.to(roomName).broadcast.emit('oponent-sent-emoji', {
             emoji: data 
         });
-        console.log(data);
     })
     socket.on('disconnect', _ =>{
         console.log(`Player ${playerIndex} has  disconnected`);

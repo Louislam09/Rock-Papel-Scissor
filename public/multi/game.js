@@ -31,7 +31,8 @@ let oponentNumber;
 let pointToWin = 3;
 let playerChoice = '';
 let oponentChoice = '';
-let time = '';
+let youEmojiTime = '';
+let oponentEmojiTime = '';
 
 let waitingOponentTime;
 const socket = io();
@@ -287,7 +288,7 @@ function wordToAnimateEmoji(word){
 }
 
 function popupEmoji(){
-	clearTimeout(time);
+	clearTimeout(youEmojiTime);
 	emojisSpan.forEach(emoji => {
 		emoji.addEventListener('click', () =>{
 			let emojiName = emoji.classList[1];
@@ -295,23 +296,23 @@ function popupEmoji(){
 			youEmojiGrid.innerHTML = wordToAnimateEmoji(emojiName);
 			youEmojiGrid.classList.add('popup-emoji');
 		
-			time = setTimeout( () => {
+			youEmojiTime = setTimeout( () => {
 				youEmojiGrid.innerText = '';
-			}, 4000);
+			}, 3000);
 		})
 	})
 }
 
 socket.on('oponent-sent-emoji', data => {
 	const { emoji } = data;
-	clearTimeout(time);
+	clearTimeout(oponentEmojiTime);
 	oponentEmojiGrid.innerHTML = wordToAnimateEmoji(emoji);
 	oponentEmojiGrid.classList.add('popup-emoji');
 
-	time = setTimeout( () => {
+	oponentEmojiTime = setTimeout( () => {
 		oponentEmojiGrid.innerText = '';
 	}, 4000);
-})
+});
 
 function showAndHideEmojiGrid(){
 	toggleEmojiArrow.addEventListener('click', () =>{
@@ -327,7 +328,7 @@ function showAndHideEmojiGrid(){
 			});
 		}); 
 	});
-}
+};
 
 
 gameStart();

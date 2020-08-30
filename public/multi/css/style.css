@@ -323,8 +323,8 @@ body {
 .toggle-emojis{
 	position: absolute;
     display: flex;
-    top: 131px;
-    left: 100px;
+    top: 540px;
+    left: -40px;
     width: 150%;
 }
 
