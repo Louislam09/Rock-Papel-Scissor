@@ -50,6 +50,12 @@ const startServer = socket => {
         playersChoices[playerIndex] = data;
     })
 
+    socket.on('send-emoji', data => {
+        socket.to(roomName).broadcast.emit('oponent-sent-emoji', {
+            emoji: data 
+        });
+        console.log(data);
+    })
     socket.on('disconnect', _ =>{
         console.log(`Player ${playerIndex} has  disconnected`);
         delete room[socket.id];

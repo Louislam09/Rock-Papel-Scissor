@@ -14,6 +14,12 @@ const WINNER_CONTAINER = document.querySelector('.winner-container');
 const WINNER = document.querySelector('.winner');
 const RESTART_BUTTON = document.querySelector('.restart-button');
 const WAITING_OPONET = document.querySelector('.waiting-oponent');
+const emojisSpan = document.querySelectorAll('.emoji');
+const youEmojiGrid = document.querySelector('.you-side .emoji-grid');
+const oponentEmojiGrid = document.querySelector('.oponent-side .emoji-grid');
+const toggleEmojiArrow = document.querySelector('.arrow');
+const emojisSection = document.querySelector('.emojis-section');
+
 
 let userName = prompt('Escribe Tu Nombre:');
 let oponentName;
@@ -25,6 +31,7 @@ let oponentNumber;
 let pointToWin = 3;
 let playerChoice = '';
 let oponentChoice = '';
+let time = '';
 
 let waitingOponentTime;
 const socket = io();
@@ -81,6 +88,8 @@ function gameStart() {
 			youSide.querySelectorAll('button').forEach((button) => disabledButton(button,'on'));
 		})
 	});
+	showAndHideEmojiGrid();
+	popupEmoji();
 }
 
 socket.on('oponent-ready', data => {
@@ -263,5 +272,63 @@ function popupMessage(message){
 		div.remove();
 	}, 3000);
 }
-  
+
+function wordToAnimateEmoji(word){
+	let surprice = `<iframe src="https://giphy.com/embed/Ss0X9wziu1NHEPXe5c" width="100" height="100" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+	let joy = `<iframe src="https://giphy.com/embed/hVlZnRT6QW1DeYj6We" width="100" height="100" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+	let Angry =`<iframe src="https://giphy.com/embed/kyQfR7MlQQ9Gb8URKG" width="100" height="100" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+	let strong =` <iframe src="https://giphy.com/embed/SvLQ270MWY0GpztVjo" width="100" height="100" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+	let cry =` <iframe src="https://giphy.com/embed/ViHbdDMcIOeLeblrbq" width="100" height="100" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+	
+	let animateEmoji = (word === 'joy') ? joy : (word === 'cry') ? cry :
+	(word === 'angry') ? Angry : (word === 'strong') ? strong : surprice;
+
+	return animateEmoji;
+}
+
+function popupEmoji(){
+	clearTimeout(time);
+	emojisSpan.forEach(emoji => {
+		emoji.addEventListener('click', () =>{
+			let emojiName = emoji.classList[1];
+			socket.emit('send-emoji',emojiName);
+			youEmojiGrid.innerHTML = wordToAnimateEmoji(emojiName);
+			youEmojiGrid.classList.add('popup-emoji');
+		
+			time = setTimeout( () => {
+				youEmojiGrid.innerText = '';
+			}, 4000);
+		})
+	})
+}
+
+socket.on('oponent-sent-emoji', data => {
+	const { emoji } = data;
+	clearTimeout(time);
+	oponentEmojiGrid.innerHTML = wordToAnimateEmoji(emoji);
+	oponentEmojiGrid.classList.add('popup-emoji');
+
+	time = setTimeout( () => {
+		oponentEmojiGrid.innerText = '';
+	}, 4000);
+})
+
+function showAndHideEmojiGrid(){
+	toggleEmojiArrow.addEventListener('click', () =>{
+		toggleEmojiArrow.innerText = (toggleEmojiArrow.innerText === '▶️') ? '◀️':'▶️';
+		emojisSection.classList.contains('hide-emojis-section') ? emojisSection.classList.replace('hide-emojis-section','show-emojis-section') :
+		emojisSection.classList.replace('show-emojis-section','hide-emojis-section'); 
+		emojisSpan.forEach((span,index) => {
+			showElement(span)
+			span.classList.contains(`e${index+1}`) ? span.classList.remove(`e${index+1}`) :
+			span.classList.add(`e${index+1}`);
+			span.addEventListener('animationend',() => {
+				hideElement(span)	
+			});
+		}); 
+	});
+}
+
+
 gameStart();
+
